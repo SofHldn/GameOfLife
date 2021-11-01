@@ -59,5 +59,13 @@ public class GameTest {
         assertEquals(2, game.countNeighbours(firstGenerationGrid, 2, 5));
     }
 
+    @Test
+    void liveCellWithLessThanTwoNeighboursDies(){
+        firstGenerationGrid[1][1] = true;
+        boolean[][] expectedResponse = new boolean[4][8];
 
+        Assertions.assertArrayEquals(expectedResponse, game.nextGeneration(firstGenerationGrid));
+
+
+    }
 }

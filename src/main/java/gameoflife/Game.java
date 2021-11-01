@@ -7,26 +7,34 @@ public class Game {
         boolean [][] tempGrid = createTempGrid(grid);
 
         int neighbours;
-        int count = 0;
+
         for (int i = 1; i < tempGrid.length-1; i++) {
             for (int j = 1; j < tempGrid[0].length-1; j++) {
 
                 neighbours = countNeighbours(tempGrid, i, j);
+                tempGrid[i][j] = updateCell(tempGrid[i][j], neighbours);
 
-                if(tempGrid[i][j]== true){
-                    count++;
-                }
+
             }
         }
-        boolean[][] allDeadGrid = new boolean[grid.length][grid[0].length];
-        if(count < 3){
-            return allDeadGrid;
-        }
+
+
 
         grid = convertBackToOriginalSize(tempGrid);
         return grid;
 
     }
+
+    private boolean updateCell(boolean cell, int neighbours) {
+
+        if(cell == true && neighbours < 2){
+            cell = false;
+        }
+        return cell;
+
+
+    }
+
     public int countNeighbours(boolean[][] tempGrid, int row, int column) {
 
         int count = 0;
