@@ -39,4 +39,12 @@ public class GameTest {
         Assertions.assertArrayEquals(expectedResponse, game.convertBackToOriginalSize(firstGenerationGrid));
     }
 
+    @Test
+    void givenGridWithOneAliveCellReturnsAllDead(){
+        firstGenerationGrid[1][1] = true;
+        boolean[][] expectedResponse = new boolean[4][8];
+
+        assertArrayEquals(expectedResponse, game.nextGeneration(firstGenerationGrid));
+    }
+
 }
