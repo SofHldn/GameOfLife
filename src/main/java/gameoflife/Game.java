@@ -28,11 +28,13 @@ public class Game {
 
     private boolean updateCell(boolean cell, int neighbours) {
 
-        if(cell && neighbours < 2){
+        if(cell && neighbours < 2 || cell && neighbours > 3){
             cell = false;
-        }else if(cell && neighbours > 3){
-            cell = false;
+        }else if(cell == false && neighbours == 3){
+            cell = true;
         }
+
+
         return cell;
 
 

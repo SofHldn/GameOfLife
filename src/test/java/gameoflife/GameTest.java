@@ -79,7 +79,10 @@ public class GameTest {
         expectedResponse[2][4] = true;
         expectedResponse[2][5] = true;
 
-        Assertions.assertArrayEquals(expectedResponse, game.nextGeneration(firstGenGrid));
+        boolean[][] actualResponse = game.nextGeneration(firstGenGrid);
+        assertEquals(expectedResponse[1][5], actualResponse[1][5]);
+        assertEquals(expectedResponse[2][4], actualResponse[2][4]);
+        assertEquals(expectedResponse[2][5], actualResponse[2][5]);
 
     }
 
@@ -91,12 +94,32 @@ public class GameTest {
         firstGenGrid[2][4] = true;
         firstGenGrid[2][5] = true;
 
+        boolean expectedResponse = false;
+        boolean[][] actualResponse = game.nextGeneration(firstGenGrid);
+
+        assertEquals(expectedResponse, actualResponse[1][4]);
+        assertEquals(expectedResponse, actualResponse[1][5]);
+
+    }
+
+    @Test
+    void deadCellWithExactlyThreeNeighboursLives(){
+
+        firstGenGrid[1][5] = true;
+        firstGenGrid[2][4] = true;
+        firstGenGrid[2][5] = true;
+
         boolean[][] expectedResponse = new boolean[4][8];
-        expectedResponse[0][5] = true;
+
+        expectedResponse[1][4] = true;
+        expectedResponse[1][5] = true;
         expectedResponse[2][4] = true;
         expectedResponse[2][5] = true;
 
         Assertions.assertArrayEquals(expectedResponse, game.nextGeneration(firstGenGrid));
 
     }
+
+
+
 }
