@@ -66,6 +66,22 @@ public class GameTest {
 
         Assertions.assertArrayEquals(expectedResponse, game.nextGeneration(firstGenerationGrid));
 
+    }
+
+    @Test
+    void liveCellWithTwoOrThreeNeighboursLivesOn(){
+        firstGenerationGrid[1][5] = true;
+        firstGenerationGrid[2][4] = true;
+        firstGenerationGrid[2][5] = true;
+
+        boolean[][] expectedResponse = new boolean[4][8];
+        expectedResponse[1][5] = true;
+        expectedResponse[2][4] = true;
+        expectedResponse[2][5] = true;
+
+        Assertions.assertArrayEquals(expectedResponse, game.nextGeneration(firstGenerationGrid));
+
 
     }
+
 }
