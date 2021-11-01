@@ -13,6 +13,10 @@ public class GameTest {
         assertArrayEquals(firstGenerationGrid, game.nextGeneration(firstGenerationGrid));
     }
 
-
+    @Test
+    void givenGridWithDimsXAndYReturnsGridWithDimsXPlusTwoAndYPlusTwo(){
+        boolean[][] expectedResponse = new boolean[firstGenerationGrid.length+2][firstGenerationGrid[0].length+2];
+        assertArrayEquals(expectedResponse, game.createTempGrid(firstGenerationGrid));
+    }
 
 }
