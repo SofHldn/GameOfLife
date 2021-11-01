@@ -33,7 +33,10 @@ public class GameTest {
         assertEquals(expectedResponse[0][0], response[0][0]);
     }
 
-
-
+    @Test
+    void givenGridWithDimsXAndYReturnsGridWithDimsXMinusTwoAndYMinusTwo(){
+        boolean[][] expectedResponse = new boolean[firstGenerationGrid.length-2][firstGenerationGrid[0].length-2];
+        Assertions.assertArrayEquals(expectedResponse, game.convertBackToOriginalSize(firstGenerationGrid));
+    }
 
 }

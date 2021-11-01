@@ -5,6 +5,19 @@ public class Game {
     public boolean[][] nextGeneration (boolean[][] grid ){
 
         boolean [][] tempGrid = createTempGrid(grid);
+        grid = convertBackToOriginalSize(tempGrid);
+        return grid;
+
+    }
+
+    public boolean[][] convertBackToOriginalSize(boolean[][] tempGrid) {
+        boolean[][] grid = new boolean[tempGrid.length-2][tempGrid[0].length-2];
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                grid[i][j] = tempGrid[i+1][j+1];
+            }
+        }
         return grid;
 
     }
