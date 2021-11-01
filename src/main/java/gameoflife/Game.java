@@ -6,9 +6,12 @@ public class Game {
 
         boolean [][] tempGrid = createTempGrid(grid);
 
+        int neighbours;
         int count = 0;
         for (int i = 1; i < tempGrid.length-1; i++) {
-            for (int j = 1; j < tempGrid[0].length; j++) {
+            for (int j = 1; j < tempGrid[0].length-1; j++) {
+
+                neighbours = countNeighbours(tempGrid, i, j);
 
                 if(tempGrid[i][j]== true){
                     count++;
@@ -24,6 +27,22 @@ public class Game {
         return grid;
 
     }
+    public int countNeighbours(boolean[][] tempGrid, int row, int column) {
+
+        int count = 0;
+        for (int i = row-1; i <= row+1 ; i++) {
+            for (int j = column-1; j <=column+1 ; j++) {
+                if(i == row && j == column){
+                }else if(tempGrid[i][j] == true){
+                    count++;
+                }
+            }
+        }
+
+        return count;
+
+    }
+
 
     public boolean[][] convertBackToOriginalSize(boolean[][] tempGrid) {
         boolean[][] grid = new boolean[tempGrid.length-2][tempGrid[0].length-2];
