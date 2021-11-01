@@ -50,9 +50,9 @@ public class GameTest {
     @Test
     void givenThreeAliveCellsReturnTwoNeighbours(){
 
-        firstGenGrid[1][5] = true;
+        firstGenGrid[1][4] = true;
+        firstGenGrid[2][3] = true;
         firstGenGrid[2][4] = true;
-        firstGenGrid[2][5] = true;
 
         assertEquals(2, game.countNeighbours(firstGenGrid, 1, 5));
         assertEquals(2, game.countNeighbours(firstGenGrid, 2, 4));
@@ -70,51 +70,51 @@ public class GameTest {
 
     @Test
     void liveCellWithTwoOrThreeNeighboursLivesOn(){
-        firstGenGrid[1][5] = true;
+        firstGenGrid[1][4] = true;
+        firstGenGrid[2][3] = true;
         firstGenGrid[2][4] = true;
-        firstGenGrid[2][5] = true;
 
         boolean[][] expectedResponse = new boolean[4][8];
-        expectedResponse[1][5] = true;
+        expectedResponse[1][4] = true;
+        expectedResponse[2][3] = true;
         expectedResponse[2][4] = true;
-        expectedResponse[2][5] = true;
 
         boolean[][] actualResponse = game.nextGeneration(firstGenGrid);
-        assertEquals(expectedResponse[1][5], actualResponse[1][5]);
+        assertEquals(expectedResponse[1][4], actualResponse[1][4]);
+        assertEquals(expectedResponse[2][3], actualResponse[2][3]);
         assertEquals(expectedResponse[2][4], actualResponse[2][4]);
-        assertEquals(expectedResponse[2][5], actualResponse[2][5]);
 
     }
 
     @Test
     void liveCellWithMoreThanThreeNeighboursDies(){
-        firstGenGrid[0][5] = true;
+        firstGenGrid[0][4] = true;
+        firstGenGrid[1][3] = true;
         firstGenGrid[1][4] = true;
-        firstGenGrid[1][5] = true;
+        firstGenGrid[2][3] = true;
         firstGenGrid[2][4] = true;
-        firstGenGrid[2][5] = true;
 
         boolean expectedResponse = false;
         boolean[][] actualResponse = game.nextGeneration(firstGenGrid);
 
+        assertEquals(expectedResponse, actualResponse[1][3]);
         assertEquals(expectedResponse, actualResponse[1][4]);
-        assertEquals(expectedResponse, actualResponse[1][5]);
 
     }
 
     @Test
     void deadCellWithExactlyThreeNeighboursLives(){
 
-        firstGenGrid[1][5] = true;
+        firstGenGrid[1][4] = true;
+        firstGenGrid[2][3] = true;
         firstGenGrid[2][4] = true;
-        firstGenGrid[2][5] = true;
 
         boolean[][] expectedResponse = new boolean[4][8];
 
+        expectedResponse[1][3] = true;
         expectedResponse[1][4] = true;
-        expectedResponse[1][5] = true;
+        expectedResponse[2][3] = true;
         expectedResponse[2][4] = true;
-        expectedResponse[2][5] = true;
 
         Assertions.assertArrayEquals(expectedResponse, game.nextGeneration(firstGenGrid));
 
