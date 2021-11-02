@@ -1,37 +1,26 @@
 package gameoflife;
 
+
 public class Game {
 
     public boolean[][] nextGeneration (boolean[][] grid ){
 
-        System.out.println("*****GEN 1*****");
-        printGrid(grid);
-
         boolean [][] tempGrid = createTempGrid(grid);
         boolean [][] nextGenGrid = createTempGrid(grid);
 
-
-
-        int neighbours;
-
         for (int i = 1; i < tempGrid.length-1; i++) {
             for (int j = 1; j < tempGrid[0].length-1; j++) {
-
-                neighbours = countNeighbours(tempGrid, i, j);
-                nextGenGrid[i][j] = updateCell(tempGrid[i][j], neighbours);
-
+                nextGenGrid[i][j] = updateCell(tempGrid[i][j], countNeighbours(tempGrid, i, j));
             }
         }
 
         grid = convertBackToOriginalSize(nextGenGrid);
 
-        System.out.println("*****GEN 2*****");
-        printGrid(grid);
         return grid;
 
     }
 
-    private void printGrid(boolean[][] grid) {
+   public void printGrid(boolean[][] grid) {
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
                 if (grid[i][j]) {
@@ -51,11 +40,7 @@ public class Game {
         }else if(!cell && neighbours == 3){
             cell = true;
         }
-
-
         return cell;
-
-
     }
 
     public int countNeighbours(boolean[][] tempGrid, int row, int column) {
@@ -69,13 +54,11 @@ public class Game {
                 }
             }
         }
-
         return count;
-
     }
 
-
     public boolean[][] convertBackToOriginalSize(boolean[][] tempGrid) {
+
         boolean[][] grid = new boolean[tempGrid.length-2][tempGrid[0].length-2];
 
         for (int i = 0; i < grid.length; i++) {
@@ -95,7 +78,6 @@ public class Game {
                 tempGrid[i][j] = grid[i-1][j-1];
             }
         }
-
         return tempGrid;
     }
 }
