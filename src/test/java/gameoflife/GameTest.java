@@ -3,7 +3,9 @@ package gameoflife;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class GameTest {
     Game game = new Game();
@@ -94,11 +96,10 @@ public class GameTest {
         firstGenGrid[2][3] = true;
         firstGenGrid[2][4] = true;
 
-        boolean expectedResponse = false;
         boolean[][] actualResponse = game.nextGeneration(firstGenGrid);
 
-        assertEquals(expectedResponse, actualResponse[1][3]);
-        assertEquals(expectedResponse, actualResponse[1][4]);
+        assertFalse(actualResponse[1][3]);
+        assertFalse(actualResponse[1][4]);
 
     }
 
@@ -119,7 +120,7 @@ public class GameTest {
         Assertions.assertArrayEquals(expectedResponse, game.nextGeneration(firstGenGrid));
 
     }
-
+    
 
 
 }
