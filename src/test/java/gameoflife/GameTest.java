@@ -2,8 +2,6 @@ package gameoflife;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -120,7 +118,7 @@ public class GameTest {
         Assertions.assertArrayEquals(expectedResponse, game.nextGeneration(firstGenGrid));
 
     }
-    
+
 
 
 }
